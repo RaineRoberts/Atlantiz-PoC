@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLANTIZ</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">ATLANTIZ</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-text-box">
+            <h1>Welcome to Project ATLANTIZ</h1>
+            <p>Explore how our AI model predicts and analyzes erosion, and offers solutions to remedy and mitigate the effects on high-risk areas.</p>
+            <a href="#demo" class="cta-button">Try the Demo</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About the Project</h2>
+            <p>Our AI model has been trained using aerial images of the Coromadel to detect and predict erosion patterns, providing valuable insights for environmental conservation and mitigation.</p>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>Interactive Demo</h2>
+            <p>Upload an image or select a sample to see our AI in action.</p>
+            <!-- Image upload form and demo interaction could be implemented here -->
+            <input type="file" id="imageUpload" accept="image/*">
+            <button onclick="runDemo()">Analyze Image</button>
+            <div id="demoResult"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have questions or feedback? We'd love to hear from you!</p>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Erosion Detection AI. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Placeholder function for demo analysis
+        function runDemo() {
+            const input = document.getElementById('imageUpload');
+            const resultDiv = document.getElementById('demoResult');
+            if (input.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    resultDiv.innerHTML = `<p>Image uploaded successfully. Analyzing...</p>`;
+                    // Add your model analysis logic here
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                resultDiv.innerHTML = `<p>Please upload an image.</p>`;
+            }
+        }
+    </script>
+
+    <!-- Inline CSS -->
+    <style>
+        /* Inline CSS for styling the page */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #fff; /* Set text color to white for contrast against black background */
+            background-color: #000; /* Set background color to black */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: #1a1a1a; /* Set the navbar background to dark gray */
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links li {
+            display: inline;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ddd;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('images/hero-image.png') no-repeat center center;
+            color: #fff;
+            text-align: center;
+            width: 100%; /* Set the width of the hero section */
+            height: 800px; /* Set the fixed height of the hero section */
+            background-size: contain; /* Ensures the image fits within the given dimensions */
+            background-color: #000; /* Set hero section background color to black */
+            position: relative;
+            padding-top: 20px; /* Adds padding to the top of the hero section */
+        }
+
+        .hero-text-box {
+            background-color: rgba(0, 0, 0, 0.6); 
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta-button {
+            background: #ff4d4d;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero .cta-button:hover {
+            background: #e60000;
+        }
+
+        .about, .demo, .contact {
+            padding: 80px 0; /* Adjust top and bottom padding for separation */
+            text-align: center;
+        }
+
+        .about h2, .demo h2, .contact h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about p, .demo p, .contact p {
+            font-size: 1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact form input, .contact form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact form button {
+            background: #0073e6;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: -22px;
+            transition: background 0.3s;
+        }
+
+        .contact form button:hover {
+            background: #005bb5;
+        }
+
+        .footer {
+            background: #1a1a1a; /* Match footer background to navbar */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer .social-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .footer .social-links li {
+            display: inline;
+        }
+
+        .footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer .social-links a:hover {
+            color: #ddd;
+        }
+    </style>
+</body>
+</html>
