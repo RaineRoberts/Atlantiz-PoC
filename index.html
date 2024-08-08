@@ -28,16 +28,19 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about section-box">
         <div class="container">
             <h2>About the Project</h2>
-            <p>Our AI model has been trained using aerial images of the Coromadel to detect and predict erosion patterns, providing valuable insights for environmental conservation and mitigation.</p>
+            <p>Our AI model has been trained using aerial images of the Coromandel to detect and predict erosion patterns, providing valuable insights for environmental conservation and mitigation.</p>
         </div>
     </section>
 
     <!-- Demo Section -->
-    <section id="demo" class="demo">
+    <section id="demo" class="demo section-box">
         <div class="container">
+            <!-- Embedded iframe for timelapse -->
+            <div class="iframe-container">
+                <iframe width="100%" height="600" src="https://earthengine.google.com/iframes/timelapse_player_embed.html#v=-36.78602,175.47394,10.748,latLng&t=0.03&ps=50&bt=19840101&et=20221231" frameborder="0" allowfullscreen></iframe>
             <h2>Interactive Demo</h2>
             <p>Upload an image or select a sample to see our AI in action.</p>
             <!-- Image upload form and demo interaction could be implemented here -->
@@ -48,7 +51,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section-box">
         <div class="container">
             <h2>Contact Us</h2>
             <p>Have questions or feedback? We'd love to hear from you!</p>
@@ -64,10 +67,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Erosion Detection AI. All rights reserved.</p>
+            <p>&copy; 2024 Project ATLANTIZ.</p>
             <ul class="social-links">
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">X (formerly Twitter)</a></li>
                 <li><a href="#">GitHub</a></li>
             </ul>
         </div>
@@ -200,8 +202,17 @@
             background: #e60000;
         }
 
+        .section-box {
+            background-color: rgba(26, 26, 26, 0.8); /* Transparent dark gray */
+            padding: 20px;
+            padding-bottom: 50px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto; /* Center align and space sections */
+        }
+
         .about, .demo, .contact {
-            padding: 80px 0; /* Adjust top and bottom padding for separation */
             text-align: center;
         }
 
@@ -214,6 +225,12 @@
             font-size: 1em;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .iframe-container {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden; /* Ensures the iframe fits within the container */
         }
 
         .contact form {
@@ -251,6 +268,7 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
+            margin-top: 40px;
         }
 
         .footer p {
