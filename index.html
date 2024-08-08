@@ -41,6 +41,7 @@
             <!-- Embedded iframe for timelapse -->
             <div class="iframe-container">
                 <iframe width="100%" height="600" src="https://earthengine.google.com/iframes/timelapse_player_embed.html#v=-36.78602,175.47394,10.748,latLng&t=0.03&ps=50&bt=19840101&et=20221231" frameborder="0" allowfullscreen></iframe>
+            </div>
             <h2>Interactive Demo</h2>
             <p>Upload an image or select a sample to see our AI in action.</p>
             <!-- Image upload form and demo interaction could be implemented here -->
@@ -63,6 +64,19 @@
             </form>
         </div>
     </section>
+
+    <!-- Fixed Chatbot -->
+    <div class="chatbot">
+        <div class="chatbot-header" onclick="toggleChat()">
+            <h3>Chat with AI</h3>
+            <span id="toggle-icon">&#x25BC;</span>
+        </div>
+        <div class="chatbot-content hidden">
+            <textarea id="chatbot-input" placeholder="Ask a question..." rows="4"></textarea>
+            <button onclick="sendMessage()">Send</button>
+            <div id="chatbotResult"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -91,6 +105,36 @@
             } else {
                 resultDiv.innerHTML = `<p>Please upload an image.</p>`;
             }
+        }
+
+        // Function to send messages to the chat API
+        async function sendMessage() {
+            const message = document.getElementById('chatbot-input').value;
+            const chatResult = document.getElementById('chatbotResult');
+
+            try {
+                const response = await fetch('https://your-repl-name.repl.co/api/chat', { // Use your Replit URL here
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                chatResult.innerHTML = `<p>${data.choices[0].message.content}</p>`;
+            } catch (error) {
+                console.error('Error:', error);
+                chatResult.innerHTML = '<p>Sorry, there was an error processing your request.</p>';
+            }
+        }
+
+        // Function to toggle chatbot visibility
+        function toggleChat() {
+            const chatbotContent = document.querySelector('.chatbot-content');
+            const toggleIcon = document.getElementById('toggle-icon');
+            chatbotContent.classList.toggle('hidden');
+            toggleIcon.textContent = chatbotContent.classList.contains('hidden') ? '\u25BC' : '\u25B2';
         }
     </script>
 
@@ -233,6 +277,76 @@
             overflow: hidden; /* Ensures the iframe fits within the container */
         }
 
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .chatbot-header {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+        }
+
+        .chatbot-header span {
+            font-size: 1.2em;
+        }
+
+        .chatbot-content {
+            padding: 10px;
+            background-color: #1a1a1a;
+        }
+
+        .chatbot-content textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .chatbot-content button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #0073e6;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .chatbot-content button:hover {
+            background: #005bb5;
+        }
+
+        .chatbot-content #chatbotResult {
+            margin-top: 10px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
         .contact form {
             max-width: 600px;
             margin: 0 auto;
@@ -296,6 +410,11 @@
 
         .footer .social-links a:hover {
             color: #ddd;
+        }
+
+        /* Hidden class to toggle chatbot visibility */
+        .hidden {
+            display: none;
         }
     </style>
 </body>
